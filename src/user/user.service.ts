@@ -15,7 +15,9 @@ export class UserService {
             password: await bcrypt.hash(createUserDto.password, 10),
         };
 
-        if (this.findByEmail(createUserDto.email)) {
+        const userExists = await this.findByEmail(createUserDto.email);
+
+        if (userExists) {
             throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
         }
 
