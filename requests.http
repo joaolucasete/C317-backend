@@ -1,6 +1,10 @@
-GET http://localhost:3000/
+### variables
+@endpoint = "http://localhost:3000"
 
 ###
+GET {{endpoint}}
+
+### Create user
 POST http://localhost:3000/api/users HTTP/1.1
 Content-Type: application/json
 
@@ -10,8 +14,8 @@ Content-Type: application/json
     "name": "Paulo Salvatore"
 }
 
-###
-
+### Login
+# @name session
 POST http://localhost:3000/api/login HTTP/1.1
 Content-Type: application/json
 
@@ -19,3 +23,7 @@ Content-Type: application/json
     "email": "cabelinho@email.com",
     "password": "Abc@123"
 }
+
+### Get User
+GET http://localhost:3000/api/me
+Authorization: Bearer {{session.response.body.access_token}}
