@@ -13,7 +13,7 @@ import { LoginValidationMiddleware } from './middlewares/login-validation.middle
     UserModule,
     PassportModule,
     JwtModule.register({
-      secret: process.env.JWT_SECRET,
+      secret: process.env.JWT_SECRET || "default_jwt_secret",
       signOptions: { expiresIn: '30d' },
     }),
   ],
