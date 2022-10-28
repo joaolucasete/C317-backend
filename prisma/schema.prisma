@@ -11,10 +11,28 @@ generator client {
 }
 
 model User {
-  id Int @id @default(autoincrement())
+  id        Int @id @default(autoincrement())
+  email     String @unique
+  password  String
+  name      String
+  serviceProvider ServiceProvider?
+}
 
-  email    String @unique
-  password String
+model ServiceProvider {
+    id      Int     @id     @default(autoincrement())
+    cpf     String  @unique
+    name    String
 
-  name String
+    // ------ Address --------
+    country String
+    zipCode String
+    street  String
+    addressNumber String
+    district String
+    addressComplement String?
+    city    String
+    // -------------------------
+
+    authorId  Int?   @unique
+    author    User?  @relation(fields: [authorId], references: [id])
 }
