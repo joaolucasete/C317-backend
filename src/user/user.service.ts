@@ -40,7 +40,7 @@ export class UserService {
     }
 
     findOne(id: number) {
-        return this.prisma.user.findUnique({ where: { id } });
+        return this.prisma.user.findUnique({ where: { id }, include: { serviceProvider: true } });
     }
 
     findAll() {
