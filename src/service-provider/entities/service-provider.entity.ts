@@ -1,13 +1,14 @@
 export class ServiceProvider {
-    cpf: string
-    name: string
-
+    userId: number;
+    cpf: string;
+    serviceName: string;
+    serviceDescription?: string;
     // ------ Address --------
-    country: string
-    zipCode: string
-    street: string
-    addressNumber: string
-    district: string
-    addressComplement?: string
-    city: string
+    zipCode: string;
+    state: string;
+    street: string;
+    addressNumber: string;
+    district: string;
+    addressComplement?: string;
+    city: string;
 }

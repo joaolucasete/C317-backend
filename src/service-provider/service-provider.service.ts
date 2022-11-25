@@ -1,18 +1,28 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { UserService } from 'src/user/user.service';
 import { CreateServiceProviderDto } from './dto/create-service-provider.dto';
 import { UpdateServiceProviderDto } from './dto/update-service-provider.dto';
 
 @Injectable()
 export class ServiceProviderService {
 
-    constructor(private readonly prisma: PrismaService) { }
+    constructor(
+        private readonly prisma: PrismaService,
+        private readonly userService: UserService
+    ) { }
 
     async create(createServiceProviderDto: CreateServiceProviderDto) {
         const data: Prisma.ServiceProviderCreateInput = {
             ...createServiceProviderDto,
         };
+
+        const checkUserExist = await this.userService.findOne(createServiceProviderDto.userId);
+
+        if (!checkUserExist) {
+            throw new HttpException('User not found', HttpStatus.BAD_REQUEST);
+        }
 
         const serviceProviderExist = await this.findByCpf(data.cpf);
 
@@ -26,7 +36,7 @@ export class ServiceProviderService {
 
         return {
             id: createdServiceProvider.id,
-            name: createdServiceProvider.name,
+            name: createdServiceProvider.serviceName,
         };
     }
 

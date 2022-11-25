@@ -1,41 +1,50 @@
-import { IsOptional, IsString, MaxLength, maxLength } from "class-validator";
+import { IsNumber, IsOptional, IsString, MaxLength, maxLength } from "class-validator";
 import { ServiceProvider } from "../entities/service-provider.entity";
 
 export class CreateServiceProviderDto extends ServiceProvider {
-    @IsString()
-    cpf: string
+
+    @IsNumber()
+    userId: number;
 
     @IsString()
-    name: string
+    cpf: string;
+
+    @IsString()
+    serviceName: string;
+
+    @IsOptional()
+    @IsString()
+    serviceDescription?: string;
 
     // ------ Address --------
-    @IsString()
-    @MaxLength(50)
-    country: string
 
     @IsString()
     @MaxLength(16)
-    zipCode: string
+    zipCode: string;
 
     @IsString()
     @MaxLength(200)
-    street: string
+    street: string;
+
+    @IsString()
+    @MaxLength(200)
+    state: string;
 
     @IsString()
     @MaxLength(50)
-    addressNumber: string
+    addressNumber: string;
 
     @IsString()
     @MaxLength(200)
-    district: string
+    district: string;
 
     @IsString()
     @IsOptional()
     @MaxLength(200)
-    addressComplement?: string
+    addressComplement?: string;
 
     @IsString()
     @MaxLength(100)
-    city: string
+    city: string;
 
 }
