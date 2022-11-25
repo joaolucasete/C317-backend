@@ -1,3 +1,20 @@
+
+# 🚀 Como executar
+
+* Clone este repositório
+```sh
+$ https://github.com/mairaalvs/S206-Cypress.git
+```
+* Abra o terminal na pasta do projeto e instale suas dependências:
+```sh
+npm install
+npm install @prisma/client
+npm i -g @nestjs/cli
+```
+* No terminal do Visual Studio Code rode o projeto:
+```sh
+npm run start
+```
 ## Requisições
 
 ### Criação de usuário
