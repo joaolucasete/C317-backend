@@ -3,7 +3,7 @@
 
 * Clone este repositório
 ```sh
-$ https://github.com/mairaalvs/S206-Cypress.git
+$ https://github.com/joaolucasete/C317-backend.git
 ```
 * Abra o terminal na pasta do projeto e instale suas dependências:
 ```sh
